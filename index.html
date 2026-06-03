@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eXtreme 3X-UI Inbound generator</title>
+    <style>
+        :root {
+            --bg-main: #07070a;
+            --bg-card: #0f0f16;
+            --bg-input: #171722;
+            --accent: #00ffaa;
+            --accent-hover: #00cc88;
+            --text-main: #f1f1f5;
+            --text-muted: #7e7e94;
+            --border: #222232;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            padding: 30px 20px;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border);
+        }
+
+        /* هدر اصلی و اطلاعات نسخه */
+        .header-area {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .badge {
+            background: rgba(0, 255, 170, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        .badge.version {
+            background: #171722;
+            color: var(--text-main);
+            border-color: var(--border);
+        }
+
+        .lang-btn {
+            background: var(--bg-input);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* بخش‌بندی فرم */
+        .section-title {
+            background: linear-gradient(90deg, #141420, transparent);
+            padding: 10px 15px;
+            border-radius: 6px;
+            color: var(--accent);
+            margin-top: 35px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        html[dir="rtl"] .section-title { border-right: 4px solid var(--accent); }
+        html[dir="ltr"] .section-title {
+            border-left: 4px solid var(--accent);
+            background: linear-gradient(270deg, #141420, transparent);
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            margin-top: 8px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-sizing: border-box;
+            background: var(--bg-input);
+            color: #fff;
+            font-family: monospace;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        html[dir="rtl"] input, html[dir="rtl"] select { text-align: left; direction: ltr; }
+        html[dir="ltr"] input, html[dir="ltr"] select { text-align: left; direction: ltr; }
+        html[dir="rtl"] select { text-align: right; direction: rtl; font-family: inherit; }
+        html[dir="ltr"] select { text-align: left; direction: ltr; font-family: inherit; }
+
+        input:focus, select:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 255, 170, 0.15);
+        }
+
+        .gen-btn {
+            width: 100%;
+            background: var(--accent);
+            color: var(--bg-main);
+            border: none;
+            padding: 16px;
+            margin-top: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .gen-btn:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 20px rgba(0, 255, 170, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* بخش نمایش نتایج */
+        .result-box {
+            margin-top: 40px;
+            display: none;
+            border-top: 2px dashed var(--border);
+            padding-top: 30px;
+        }
+
+        .result-box h3 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .config-card {
+            background: #0d0d16;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .config-card h4 {
+            margin: 0 0 12px 0;
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: var(--bg-input);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: inherit;
+        }
+
+        .copy-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        textarea {
+            width: 100%;
+            height: 250px;
+            text-align: left;
+            direction: ltr;
+            font-family: "Fira Code", monospace;
+            font-size: 13px;
+            background: #06060a;
+            color: #00ff9d;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            resize: vertical;
+        }
+    </style>
+    
+    <script src="templates.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-area">
+        <div class="header-top">
+            <h1 id="mainTitle">eXtreme 3X-UI Inbound generator</h1>
+            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">EN</button>
+        </div>
+        <div class="badge-container">
+            <span class="badge version">v2.0.0</span>
+            <span class="badge">Sanaei Panel v3.2.6 Compatible</span>
+        </div>
+    </div>
+    
+    <div class="section-title" id="sec1">۱. تنظیمات اتصال CDN (Cloudflare)</div>
+    <label id="lblSubCdn">ساب‌دومین پشت CDN:</label>
+    <input type="text" id="subdomainCdn" placeholder="proxy_on.domain.com" value="">
+    <label id="lblCertCdn">مسیر فایل Fullchain.pem برای CDN:</label>
+    <input type="text" id="certCdn" readonly>
+    <label id="lblKeyCdn">مسیر فایل Privkey.pem برای CDN:</label>
+    <input type="text" id="keyCdn" readonly>
+
+    <div class="section-title" id="sec2">۲. تنظیمات اتصال مستقیم (Direct)</div>
+    <label id="lblSubDirect">ساب‌دومین یا آی‌پی مستقیم سرور:</label>
+    <input type="text" id="subdomainDirect" placeholder="my.domain.com" value="">
+    <label id="lblCertDirect">مسیر فایل Fullchain.pem برای مستقیم:</label>
+    <input type="text" id="certDirect" readonly>
+    <label id="lblKeyDirect">مسیر فایل Privkey.pem برای مستقیم:</label>
+    <input type="text" id="keyDirect" readonly>
+
+    <div class="section-title" id="sec3">۳. محدودسازی و وایت‌لیست مقصدهای خارجی</div>
+    <label id="lblWhitelist">آی‌پی یا رنج ساب‌نت جهت کلودفلر / وایت‌لیست:</label>
+    <input type="text" id="whitelistIp" value="104.16.133.229">
+
+    <div class="section-title" id="sec4">۴. تنظیمات مسیر سرویس‌ها (Paths)</div>
+    <label id="lblPathMode">وضعیت تولید Path برای سرویس‌ها:</label>
+    <select id="pathMode" onchange="togglePathInputs()">
+        <option value="random" id="optRand">تولید به صورت کاملاً رندوم و خودکار</option>
+        <option value="fixed" id="optFixed">وارد کردن به صورت دستی و ثابت</option>
+    </select>
+
+    <div id="customPaths" style="display: none;">
+        <label>WebSocket Path:</label>
+        <input type="text" id="pWs" value="/vless-ws">
+        <label>gRPC Service Name:</label>
+        <input type="text" id="pGrpc" value="vless-grpc">
+        <label>HTTPUpgrade Path:</label>
+        <input type="text" id="pUpgrade" value="/vless-upgrade">
+        <label>xHTTP Path:</label>
+        <input type="text" id="pXhttp" value="/vless-xhttp">
+    </div>
+
+    <div class="section-title" id="sec5">۵. انتخاب خروجی کانفیگ</div>
+    <label id="lblSelectConfig">کدام کانفیگ ساخته شود؟</label>
+    <select id="configSelection"></select>
+
+    <button class="gen-btn" onclick="generateConfigs()" id="btnGenerate">تولید کانفیگ دلخواه</button>
+
+    <div id="resultSection" class="result-box">
+        <h3 id="resultTitle">خروجی کانفیگ‌های مورد نظر:</h3>
+        <div id="configsContainer"></div>
+    </div>
+</div>
+
+<script>
+let currentLang = 'fa';
+const dictionary = {
+    fa: {
+        sec1: "۱. تنظیمات اتصال CDN (Cloudflare)",
+        lblSubCdn: "ساب‌دومین پشت CDN:",
+        lblCertCdn: "مسیر فایل Fullchain.pem برای CDN (هوشمند):",
+        lblKeyCdn: "مسیر فایل Privkey.pem برای CDN (هوشمند):",
+        sec2: "۲. تنظیمات اتصال مستقیم (Direct)",
+        lblSubDirect: "ساب‌دومین یا آی‌پی مستقیم سرور:",
+        lblCertDirect: "مسیر فایل Fullchain.pem برای مستقیم (هوشمند):",
+        lblKeyDirect: "مسیر فایل Privkey.pem برای مستقیم (هوشمند):",
+        sec3: "۳. محدودسازی و وایت‌لیست مقصدهای خارجی",
+        lblWhitelist: "آی‌پی یا رنج ساب‌نت جهت کلودفلر / وایت‌لیست:",
+        sec4: "۴. تنظیمات مسیر سرویس‌ها (Paths)",
+        optRand: "تولید به صورت کاملاً رندوم و خودکار",
+        optFixed: "وارد کردن به صورت دستی و ثابت",
+        sec5: "۵. انتخاب خروجی کانفیگ",
+        lblSelectConfig: "کدام کانفیگ ساخته شود؟",
+        btnGenerate: "تولید کانفیگ دلخواه",
+        resultTitle: "خروجی کانفیگ‌های مورد نظر:",
+        allOpt: "🚀 ساخت و نمایش همه ۲۱ کانفیگ به صورت یکجا",
+        copy: "کپی کد"
+    },
+    en: {
+        sec1: "1. CDN Connection Settings (Cloudflare)",
+        lblSubCdn: "Subdomain behind CDN:",
+        lblCertCdn: "Fullchain.pem Path for CDN (Auto):",
+        lblKeyCdn: "Privkey.pem Path for CDN (Auto):",
+        sec2: "2. Direct Connection Settings",
+        lblSubDirect: "Direct Subdomain or Server IP:",
+        lblCertDirect: "Fullchain.pem Path for Direct (Auto):",
+        lblKeyDirect: "Privkey.pem Path for Direct (Auto):",
+        sec3: "3. Restrictions & External Whitelist",
+        lblWhitelist: "IP or Subnet Range for Whitelist/Cloudflare:",
+        sec4: "4. Service Paths Settings",
+        optRand: "Generate completely random paths automatically",
+        optFixed: "Enter static paths manually",
+        sec5: "5. Config Output Selection",
+        lblSelectConfig: "Which configuration to generate?",
+        btnGenerate: "Generate Configuration",
+        resultTitle: "Generated Configurations:",
+        allOpt: "🚀 Generate and Display All 21 Configs at Once",
+        copy: "Copy Code"
+    }
+};
+
+window.onload = function() {
+    // فعال‌سازی سیستم هوشمند پث گواهینامه‌ها
+    setupSmartCertPaths();
+    updateDropdown();
+};
+
+// تابع هوشمند برای تولید آنی مسیر سرت‌ها متناسب با ساب‌دومین‌ها
+function setupSmartCertPaths() {
+    const subCdnInput = document.getElementById('subdomainCdn');
+    const subDirectInput = document.getElementById('subdomainDirect');
+
+    function updateCdnPaths() {
+        const val = subCdnInput.value.trim() || "proxy_on.cloudflare.com";
+        document.getElementById('certCdn').value = `/root/cert/${val}/fullchain.pem`;
+        document.getElementById('keyCdn').value = `/root/cert/${val}/privkey.pem`;
+    }
+
+    function updateDirectPaths() {
+        const val = subDirectInput.value.trim() || "my.domain.com";
+        document.getElementById('certDirect').value = `/root/cert/${val}/fullchain.pem`;
+        document.getElementById('keyDirect').value = `/root/cert/${val}/privkey.pem`;
+    }
+
+    // لیسنرهای گوش به زنگ برای تغییر همزمان
+    subCdnInput.addEventListener('input', updateCdnPaths);
+    subDirectInput.addEventListener('input', updateDirectPaths);
+
+    // اجرای اولیه موقع لود
+    updateCdnPaths();
+    updateDirectPaths();
+}
+
+function toggleLanguage() {
+    currentLang = currentLang === 'fa' ? 'en' : 'fa';
+    const html = document.getElementById('htmlTag');
+    
+    if(currentLang === 'en') {
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', 'en');
+        document.getElementById('langBtn').innerText = 'FA';
+    } else {
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'fa');
+        document.getElementById('langBtn').innerText = 'EN';
+    }
+
+    document.getElementById('sec1').innerText = dictionary[currentLang].sec1;
+    document.getElementById('lblSubCdn').innerText = dictionary[currentLang].lblSubCdn;
+    document.getElementById('lblCertCdn').innerText = dictionary[currentLang].lblCertCdn;
+    document.getElementById('lblKeyCdn').innerText = dictionary[currentLang].lblKeyCdn;
+    document.getElementById('sec2').innerText = dictionary[currentLang].sec2;
+    document.getElementById('lblSubDirect').innerText = dictionary[currentLang].lblSubDirect;
+    document.getElementById('lblCertDirect').innerText = dictionary[currentLang].lblCertDirect;
+    document.getElementById('lblKeyDirect').innerText = dictionary[currentLang].lblKeyDirect;
+    document.getElementById('sec3').innerText = dictionary[currentLang].sec3;
+    document.getElementById('lblWhitelist').innerText = dictionary[currentLang].lblWhitelist;
+    document.getElementById('sec4').innerText = dictionary[currentLang].sec4;
+    document.getElementById('optRand').innerText = dictionary[currentLang].optRand;
+    document.getElementById('optFixed').innerText = dictionary[currentLang].optFixed;
+    document.getElementById('sec5').innerText = dictionary[currentLang].sec5;
+    document.getElementById('lblSelectConfig').innerText = dictionary[currentLang].lblSelectConfig;
+    document.getElementById('btnGenerate').innerText = dictionary[currentLang].btnGenerate;
+    document.getElementById('resultTitle').innerText = dictionary[currentLang].resultTitle;
+
+    updateDropdown();
+}
+
+function updateDropdown() {
+    const selectMenu = document.getElementById('configSelection');
+    const currentSelection = selectMenu.value; 
+    selectMenu.innerHTML = '';
+    
+    const allOpt = document.createElement('option');
+    allOpt.value = 'all';
+    allOpt.innerText = dictionary[currentLang].allOpt;
+    selectMenu.appendChild(allOpt);
+
+    xrayTemplates.forEach((tmpl, index) => {
+        const opt = document.createElement('option');
+        opt.value = index;
+        opt.innerText = tmpl.name;
+        selectMenu.appendChild(opt);
+    });
+
+    if(currentSelection) selectMenu.value = currentSelection;
+}
+
+function togglePathInputs() {
+    const mode = document.getElementById('pathMode').value;
+    document.getElementById('customPaths').style.display = mode === 'fixed' ? 'block' : 'none';
+}
+
+function makeRandomString(length) {
+    let result = '';
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return '/' + result;
+}
+
+function makeRandomBase64(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result + '=';
+}
+
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+function copyToClipboard(elementId) {
+    const textarea = document.getElementById(elementId);
+    textarea.select();
+    document.execCommand('copy');
+    alert(currentLang === 'fa' ? 'کد اینباند با موفقیت کپی شد!' : 'Inbound code copied to clipboard!');
+}
+
+function renderConfigCard(tmpl, subCdn, certCdn, keyCdn, subDirect, certDirect, keyDirect, whitelist, pathWs, pathGrpc, pathUpgrade, pathXhttp) {
+    let strContent = JSON.stringify(tmpl.content, null, 2);
+
+    const uuid = generateUUID();
+    const randomEchServer = "ACBt" + makeRandomBase64(140); 
+    const randomEchConfig = "AGj+" + makeRandomBase64(130);
+
+    strContent = strContent.replaceAll('{{UUID}}', uuid);
+    strContent = strContent.replaceAll('{{SUBDOMAIN_CDN}}', subCdn);
+    strContent = strContent.replaceAll('{{CERT_CDN}}', certCdn);
+    strContent = strContent.replaceAll('{{KEY_CDN}}', keyCdn);
+    strContent = strContent.replaceAll('{{SUBDOMAIN_DIRECT}}', subDirect);
+    strContent = strContent.replaceAll('{{CERT_DIRECT}}', certDirect);
+    strContent = strContent.replaceAll('{{KEY_DIRECT}}', keyDirect);
+    strContent = strContent.replaceAll('{{WHITELIST_IP}}', whitelist);
+    strContent = strContent.replaceAll('{{PATH_WS}}', pathWs);
+    strContent = strContent.replaceAll('{{PATH_GRPC}}', pathGrpc.replace('/', ''));
+    strContent = strContent.replaceAll('{{PATH_UPGRADE}}', pathUpgrade);
+    strContent = strContent.replaceAll('{{PATH_XHTTP}}', pathXhttp);
+    strContent = strContent.replaceAll('{{ECH_SERVER_KEYS}}', randomEchServer);
+    strContent = strContent.replaceAll('{{ECH_CONFIG_LIST}}', randomEchConfig);
+
+    const cardId = `txt_${tmpl.id}_${Math.floor(Math.random() * 10000)}`;
+    const card = document.createElement('div');
+    card.className = 'config-card';
+    card.innerHTML = `
+        <h4>
+            <span>📄 ${tmpl.name}</span>
+            <button class="copy-btn" onclick="copyToClipboard('${cardId}')">${dictionary[currentLang].copy}</button>
+        </h4>
+        <textarea id="${cardId}" readonly>${strContent}</textarea>
+    `;
+    return card;
+}
+
+function generateConfigs() {
+    const subCdn = document.getElementById('subdomainCdn').value.trim() || "cdn.example.com";
+    const certCdn = document.getElementById('certCdn').value;
+    const keyCdn = document.getElementById('keyCdn').value;
+    const subDirect = document.getElementById('subdomainDirect').value.trim() || "direct6.asus-vivo.com";
+    const certDirect = document.getElementById('certDirect').value;
+    const keyDirect = document.getElementById('keyDirect').value;
+    const whitelist = document.getElementById('whitelistIp').value;
+    const pathMode = document.getElementById('pathMode').value;
+
+    const pathWs = pathMode === 'random' ? makeRandomString(7) : document.getElementById('pWs').value;
+    const pathGrpc = pathMode === 'random' ? makeRandomString(7) : document.getElementById('pGrpc').value;
+    const pathUpgrade = pathMode === 'random' ? makeRandomString(7) : document.getElementById('pUpgrade').value;
+    const pathXhttp = pathMode === 'random' ? makeRandomString(7) : document.getElementById('pXhttp').value;
+
+    const selection = document.getElementById('configSelection').value;
+    const container = document.getElementById('configsContainer');
+    container.innerHTML = ''; 
+
+    if (selection === 'all') {
+        xrayTemplates.forEach(tmpl => {
+            const card = renderConfigCard(tmpl, subCdn, certCdn, keyCdn, subDirect, certDirect, keyDirect, whitelist, pathWs, pathGrpc, pathUpgrade, pathXhttp);
+            container.appendChild(card);
+        });
+    } else {
+        const index = parseInt(selection);
+        const selectedTemplate = xrayTemplates[index];
+        if (selectedTemplate) {
+            const card = renderConfigCard(selectedTemplate, subCdn, certCdn, keyCdn, subDirect, certDirect, keyDirect, whitelist, pathWs, pathGrpc, pathUpgrade, pathXhttp);
+            container.appendChild(card);
+        }
+    }
+
+    document.getElementById('resultSection').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('resultSection').offsetTop, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
