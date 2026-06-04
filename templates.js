@@ -19,7 +19,6 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user1@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -75,10 +74,10 @@ const xrayTemplates = [
 					"alpn": [
 						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				}
@@ -112,7 +111,6 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user2@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				]
 			},
 			"streamSettings": {
@@ -142,12 +140,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				}
@@ -171,7 +169,7 @@ const xrayTemplates = [
 			"up": 0,
 			"down": 0,
 			"total": 0,
-			"remark": "03-tls WS direct",
+			"remark": "03- tls WS direct",
 			"enable": true,
 			"expiryTime": 0,
 			"trafficReset": "never",
@@ -181,7 +179,7 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user3@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -214,13 +212,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				}
@@ -244,7 +241,7 @@ const xrayTemplates = [
 			"up": 0,
 			"down": 0,
 			"total": 0,
-			"remark": "04-tls httpupgrade direct",
+			"remark": "04- tls httpupgrade direct",
 			"enable": true,
 			"expiryTime": 0,
 			"trafficReset": "never",
@@ -254,7 +251,6 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user4@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				]
 			},
 			"streamSettings": {
@@ -284,13 +280,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				}
@@ -324,7 +319,6 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user5@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				]
 			},
 			"streamSettings": {
@@ -355,10 +349,10 @@ const xrayTemplates = [
 					"alpn": [
 						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				}
@@ -393,7 +387,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user6@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -426,7 +420,7 @@ const xrayTemplates = [
 			"up": 0,
 			"down": 0,
 			"total": 0,
-			"remark": "07-http WS direct vless",
+			"remark": "07- http WS direct vless",
 			"enable": true,
 			"expiryTime": 0,
 			"trafficReset": "never",
@@ -436,7 +430,6 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user7@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -482,7 +475,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user8@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -526,7 +519,7 @@ const xrayTemplates = [
 			"up": 0,
 			"down": 0,
 			"total": 0,
-			"remark": "09-http WS direct vmess",
+			"remark": "09- http WS direct vmess",
 			"enable": true,
 			"expiryTime": 0,
 			"trafficReset": "never",
@@ -536,7 +529,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user9@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -579,7 +572,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user10@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -610,13 +603,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				},
@@ -661,7 +653,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user11@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -692,10 +684,10 @@ const xrayTemplates = [
 					"alpn": [
 						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				},
@@ -740,7 +732,7 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user12@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -794,13 +786,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				},
@@ -844,7 +835,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user13@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+
 				]
 			},
 			"streamSettings": {
@@ -896,13 +887,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				},
@@ -946,7 +936,6 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user14@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				]
 			},
 			"streamSettings": {
@@ -976,13 +965,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				},
@@ -1026,7 +1014,6 @@ const xrayTemplates = [
 			"protocol": "trojan",
 			"settings": {
 				"clients": [
-					{ "password": "{{UUID}}", "email": "user15@trojan.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				]
 			},
 			"streamSettings": {
@@ -1057,13 +1044,12 @@ const xrayTemplates = [
 						}
 					],
 					"alpn": [
-						"h2",
-						"http/1.1"
+						"h2"
 					],
-					"echServerKeys": "{{ECH_SERVER_KEYS}}",
+					"echServerKeys": "",
 					"settings": {
 						"fingerprint": "chrome",
-						"echConfigList": "{{ECH_CONFIG_LIST}}",
+						"echConfigList": "",
 						"pinnedPeerCertSha256": []
 					}
 				},
@@ -1107,7 +1093,6 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user16@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -1162,7 +1147,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user17@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -1215,7 +1200,7 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user18@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -1271,7 +1256,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user19@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				]
 			},
 			"streamSettings": {
@@ -1325,7 +1310,7 @@ const xrayTemplates = [
 			"protocol": "vless",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "flow": "", "email": "user20@vless.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+					
 				],
 				"decryption": "none",
 				"encryption": "none"
@@ -1402,7 +1387,7 @@ const xrayTemplates = [
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
-					{ "id": "{{UUID}}", "security": "auto", "level": 0, "email": "user21@vmess.com", "limitIp": 0, "totalGB": 0, "expiryTime": 0, "enable": true }
+
 				]
 			},
 			"streamSettings": {
